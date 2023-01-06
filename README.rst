@@ -219,6 +219,15 @@ DNS lookup
 * If ``gethostbyname`` does not have it cached nor can find it in the ``hosts``
   file then it makes a request to the DNS server configured in the network
   stack. This is typically the local router or the ISP's caching DNS server.
+* If the DNS resolver has a recent copy of the DNS record, it will return the IP address to your computer.
+* If the DNS resolver does not have a recent copy of the DNS record, it will send a request to a DNS root server.
+* The DNS root server responds with a referral to a top-level domain (TLD) server (e.g., ".com", ".org", ".net"), based on the TLD of the domain name you requested.
+* The DNS resolver sends a request to the TLD server.
+* The TLD server responds with a referral to the authoritative DNS server for the domain name you requested.
+* The DNS resolver sends a request to the authoritative DNS server.
+* The authoritative DNS server responds with the IP address for the domain name you requested.
+* The DNS resolver returns the IP address to your computer.
+* Your computer uses the IP address to send a request to the server that hosts the website (google.com) you want to visit.
 * If the DNS server is on the same subnet the network library follows the
   ``ARP process`` below for the DNS server.
 * If the DNS server is on a different subnet, the network library follows
